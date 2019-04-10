@@ -11,9 +11,12 @@
 <body>
   <p> TinyApp </p>
   <a href='#'>Create a New TinyURL</a>
+      <p></p>
+      <p>My URLS</p>
   <ul> <% for (var listed in longURL) { %>
     <% if (listed === shortURL){ %>
-      <li><b><%= listed %></b> - <%= longURL[listed] %></li>
+      <p> Tiny URL for - <%= longURL[listed] %></p>
+        <li><b><%= listed %></b></li>
     <% }}; %> </ul>
 </header>
 </body>
