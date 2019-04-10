@@ -53,7 +53,7 @@ app.post("/urls", (req, res) => {
 
 });
 
-app.post(/urls/:shortURL/delete), (req, res){
+app.post("/urls/:shortURL/delete"), (req, res){
   delete urlDatacase.shortURL;
   res.redirect("/urls");
 }
