@@ -12,9 +12,11 @@
     <p> TinyApp </p>
   <a href='#'>Create a New TinyURL</a>
       <p>My URLs</p>
-    <ul> <% for (var listed in urls) { %>
-      <li><b><%= listed %></b> - <%= urls[listed] %></li>
+    <ul> <% for (url in urls) { %>
+      <form method="POST" action = "/urls/<%= url %>/delete">
+      <li><b><%= url %></b> - <%= urls[url] %></li>
+            <button type="submit" class="btn btn-primary">Delete</button>
     <% }; %> </ul>
-    <form method="POST" action="/urls/9sm5xK/delete">...</form>
+  </form>
 </body>
 </html>
