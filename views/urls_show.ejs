@@ -13,11 +13,10 @@
   <a href='#'>Create a New TinyURL</a>
       <p></p>
       <p>My URLS</p>
-  <ul> <% for (var listed in longURL) { %>
-    <% if (listed === shortURL){ %>
-      <p> Tiny URL for - <%= longURL[listed] %></p>
-        <li><b><%= listed %></b></li>
-    <% }}; %> </ul>
+  <ul>
+      <p> Tiny URL for - <%= longURL %></p>
+        <a href = <%= longURL %> ><b><%= shortURL %></b></a>
+    %> </ul>
 </header>
 </body>
 </html>
