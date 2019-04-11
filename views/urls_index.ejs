@@ -14,9 +14,9 @@
       <p>My URLs</p>
     <ul> <% for (url in urls) { %>
       <form method="POST" action = "/urls/<%= url %>/delete">
+      <button type="submit" class="btn btn-primary">Delete</button>
       <li><b><%= url %></b> - <%= urls[url] %></li>
       <a href="/urls/<%= url %>"> Edit</a>
-            <button type="submit" class="btn btn-primary">Delete</button>
     <% }; %> </ul>
   </form>
 </body>
