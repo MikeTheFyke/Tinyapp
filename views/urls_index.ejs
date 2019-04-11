@@ -9,16 +9,18 @@
   <title>TinyApp</title>
 </head>
 <body style="font-size:20px; padding:50px;">
-    <p> TinyApp </p>
+  <%- include partials/_header.ejs %>
+  <a>  </a>
   <a href='#'>Create a New TinyURL</a>
       <p>My URLs</p>
-    <ul> <% for (url in urls) { %>
-
+    <ul>
+      <% for (url in urls){ %>
       <form method="POST" action = "/urls/<%= url %>/delete">
-      <button type="submit" class="btn btn-primary">Delete</button>
       <li><b><%= url %></b> - <%= urls[url] %></li>
+            <button type="submit" class="btn btn-primary">Delete</button>
       <a href="/urls/<%= url %>"> Edit</a>
-    <% }; %> </ul>
+     <% } %>
+     </ul>
   </form>
 </body>
 </html>
