@@ -9,7 +9,7 @@
   <title>TinyApp</title>
 </head>
 <body>
-  <p> TinyApp </p>
+  <%- include partials/_header.ejs %>
   <a href="#">Create a New TinyURL</a>
       <p></p>
       <p>My URLS</p>
@@ -18,7 +18,7 @@
         <a href = <%= longURL %> ><b><%= shortURL %></b></a>
     %>
     <form method="POST" action="/urls/<%= shortURL %>">
-    <input name = "username" type="text" placeholder="Input your long url link here"></input>
+    <input name = "username" type="text" placeholder="Input "></input>
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     </ul>
