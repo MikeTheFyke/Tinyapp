@@ -16,12 +16,11 @@
   <ul>
       <p> Tiny URL for - <%= longURL %></p>
         <a href = <%= longURL %> ><b><%= shortURL %></b></a>
-    %> </ul>
-</header>
-
-    <form method="POST" action="/urls/9sm5xK/delete">
-    <input name = "LongURL"type="text" placeholder="Input you long url link here"></input>
-    <button type="update" class="btn btn-primary">Update</button>
+    %>
+    <form method="POST" action="/urls/<%= shortURL %>">
+    <input name = "longURL" type="text" placeholder="Input you long url link here"></input>
+    <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    </ul>
 </body>
 </html>
