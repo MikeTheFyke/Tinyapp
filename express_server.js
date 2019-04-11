@@ -52,10 +52,15 @@ app.post("/urls", (req, res) => {
   res.send("Ok");         // Respond with 'Ok' (we will replace this)
 });
 
-app.post("/urls", (req, res) => {
-  var editLink =
-  res.redirect("/urls/");
-})
+app.get("/urls/:id", (req, res) =>{
+  res.render ("urls_show", {shortURL:req.params.id});
+});
+
+app.post("/urls/:id", (req, res) => {
+  var editLink = req.body.longURL;
+  urlDatabase[req.params.id] = editLink
+  res.redirect("/urls");
+});
 
 app.post("/urls/:shortURL/delete", (req, res) => {
   let short = req.params.shortURL;
