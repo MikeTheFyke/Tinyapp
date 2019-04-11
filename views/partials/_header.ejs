@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<h1>Tiny App</h1>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <title>_Header</title>
-</head>
-<body style="font-size:20px; padding:50px;">
-      <form method="POST" action="/login<%= url %>/login">
-      <input name = "longURL" type="text" placeholder="Input your username here"></input>
-      <button type="submit" class="btn btn-primary">Delete</button>
-      </form>
-</body>
-</html>
+<% if (username) {%>
+<form method="POST" action = "/logout">
+  <h1> Logged in as: <%= username %></h1>
+  <button type="submit" class="btn btn-primary">Logout</button>
+</form>
+<% }
+ else { %>
+<form method="POST" action = "/login">
+        <p>Username:</p>
+        <input type="text" name="username" placeholder="Please enter your username">
+        <p></p>
+        <button type="submit" class="btn btn-primary">Login</button>
+</form>
+<% } %>
