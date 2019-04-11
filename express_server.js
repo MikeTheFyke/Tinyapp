@@ -44,6 +44,11 @@ app.get("/u/:shortURL", (req, res) => {
   res.redirect(longURL);
 });
 
+app.post("/login", (req, res) => {
+  const username = res.params.username;
+  res.render("_header");
+})
+
 app.post("/urls", (req, res) => {
   var shortURLLoader = generateRandomString();
   urlDatabase[shortURLLoader] = req.body.longURL;
