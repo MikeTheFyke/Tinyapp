@@ -50,8 +50,12 @@ app.post("/urls", (req, res) => {
   res.redirect("/urls/" + shortURLLoader);
   console.log(req.body);  // Log the POST request body to the console
   res.send("Ok");         // Respond with 'Ok' (we will replace this)
-
 });
+
+app.post("/urls", (req, res) => {
+  var editLink =
+  res.redirect("/urls/");
+})
 
 app.post("/urls/:shortURL/delete", (req, res) => {
   let short = req.params.shortURL;
