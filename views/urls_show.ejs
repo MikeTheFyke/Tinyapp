@@ -10,7 +10,7 @@
 </head>
 <body>
   <p> TinyApp </p>
-  <a href='#'>Create a New TinyURL</a>
+  <a href="#">Create a New TinyURL</a>
       <p></p>
       <p>My URLS</p>
   <ul>
@@ -18,7 +18,10 @@
         <a href = <%= longURL %> ><b><%= shortURL %></b></a>
     %> </ul>
 </header>
-    <form method="POST" action="/urls/9sm5xK/delete">...</form>
-    <button type="submit" class="btn btn-primary">Delete</button>
+
+    <form method="POST" action="/urls/9sm5xK/delete">
+    <input name = "LongURL"type="text" placeholder="Input you long url link here"></input>
+    <button type="update" class="btn btn-primary">Update</button>
+    </form>
 </body>
 </html>
