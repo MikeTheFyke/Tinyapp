@@ -75,7 +75,7 @@ app.get("/register", (req, res) =>{
  let templateVars = { user_id: req.cookies["user_id"],
                        email: (req.cookie["user_id"])
  }
-  res.render("/register", templateVars);
+  res.render("urls/register", templateVars);
 });
 
 app.post("/register", (req, res) =>{
@@ -95,7 +95,7 @@ app.post("/register", (req, res) =>{
       users[newKey]["password"] = userpass;
     }
     console.log(" Cookie is storing: ", newkey, useremail, userpass);
-    let cookie_id = res.cookie("Cookies ", res.cookie).userID;
+    let cookie_id = res.cookie("Cookies ", res.cookie).user_id;
     res.cookie ("user_id", users[newKey]["id"]);
     res.redirect ("/urls");
 });
