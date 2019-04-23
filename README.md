@@ -129,3 +129,10 @@ Functional / Display Requirements
 -.POST/logout
   -> deletes cookie
   -> redirects to /urls
+
+
+Dependencies include
+
+cookie-parser
+body-parser
+express
