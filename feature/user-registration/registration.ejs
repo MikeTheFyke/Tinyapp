@@ -6,16 +6,12 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <title></title>
+  <title>TinyApp</title>
 </head>
 <body>
-  <%- include partials/_header.ejs %>
 <form method="POST" action = "/register">
-      <p>Email:</p>
-      <input type="email" name="useremail" placeholder="Please enter your email">
-      <p>Password:</p>
-      <input type="password" name="userpass" placeholder="Please enter your password">
-      <button type="submit">Login</button>
+<input type="email" name="email" placeholder="Please enter your email">
+<input type="password" name="password" placeholder="Please enter your password">
 </form>
 </body>
 </html>

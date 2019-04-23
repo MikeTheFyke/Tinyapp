@@ -37,8 +37,16 @@ app.get("/urls.json", (req, res) => {
 
 app.get("/urls", (req, res) => {
   let templateVars = {username: req.cookies["username"], urls: urlDatabase };
-  //let cookie_id = res.cookie("Cookies ", res.cookie).userID;
+  let cookie_id = res.cookie("Cookies ", res.cookie).userID;
   res.render("urls_index", templateVars);
+});
+
+app.post("/urls", (req, res) => {
+  var shortURLLoader = generateRandomString();
+  urlDatabase[shortURLLoader] = req.body.longURL;
+  res.redirect("/urls/" + shortURLLoader);
+  ///console.log(req.body);  // Log the POST request body to the console
+  res.send("Ok");         // Respond with 'Ok' (we will replace this)
 });
 
 app.get("/urls/new", (req, res) => {
@@ -52,23 +60,22 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/login", (req, res) =>{
-  let templateVars = {username: req.cookies["username"], urls: urlDatabase };
+  let templateVars = {username: req.cookies["username"]};
   res.render("urls_login", templateVars);
 });
 
 app.post("/login", (req, res) => {
   res.cookie('username', req.body.username);
-    //let cookie_id = res.cookie("Cookies ", res.cookie).userID;
-  console.log(req.body.username);
+  let cookie_id = res.cookie("Cookies ", res.cookie).userID;
+  ///console.log(req.body.username);
   res.redirect("/urls");
 });
 
 app.get("/register", (req, res) =>{
- let templateVars = {
-  user_id: req.cookies["user_id"],
-  email: (user.cookie["user_id"])
+ let templateVars = { user_id: req.cookies["user_id"],
+                       email: (req.cookie["user_id"])
  }
-  res.render("register", templateVars);
+  res.render("/register", templateVars);
 });
 
 app.post("/register", (req, res) =>{
@@ -87,7 +94,8 @@ app.post("/register", (req, res) =>{
       users[newKey]["email"] = useremail;
       users[newKey]["password"] = userpass;
     }
-      //let cookie_id = res.cookie("Cookies ", res.cookie).userID;
+    console.log(" Cookie is storing: ", newkey, useremail, userpass);
+    let cookie_id = res.cookie("Cookies ", res.cookie).userID;
     res.cookie ("user_id", users[newKey]["id"]);
     res.redirect ("/urls");
 });
@@ -99,16 +107,8 @@ app.get("/urls/:shortURL", (req, res) => {
 
 app.get("/u/:shortURL", (req, res) => {
   const longURL = urlDatabase[req.params.shortURL];
-  console.log(longURL);
+  ///console.log(longURL);
   res.redirect(longURL);
-});
-
-app.post("/urls", (req, res) => {
-  var shortURLLoader = generateRandomString();
-  urlDatabase[shortURLLoader] = req.body.longURL;
-  res.redirect("/urls/" + shortURLLoader);
-  console.log(req.body);  // Log the POST request body to the console
-  res.send("Ok");         // Respond with 'Ok' (we will replace this)
 });
 
 app.get("/urls/:id", (req, res) =>{

@@ -13,13 +13,12 @@
   <a href="#">Create a New TinyURL</a>
       <p></p>
       <p>My URLS</p>
-  <ul>
+    <ul>
       <p> Tiny URL for - <%= longURL %></p>
         <a href = <%= longURL %> ><b><%= shortURL %></b></a>
-    %>
     <form method="POST" action="/urls/<%= shortURL %>">
-    <input name = "username" type="text" placeholder="Input "></input>
-    <button type="submit" class="btn btn-primary">Submit</button>
+        <input name = "username" type="text" placeholder="longurl "></input>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     </ul>
 </body>
