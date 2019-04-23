@@ -14,10 +14,18 @@ var urlDatabase = {
   "9sm5xK": "http://www.google.com"
 };
 
-app.get("/urls", (req, res) => {
-  let templateVars = {username: req.cookies["username"], urls: urlDatabase };
-  res.render("urls_index", templateVars);
-});
+const users = {
+  "userRandomID": {
+    id: "userRandomID",
+    email: "user@example.com",
+    password: "purple-monkey-dinosaur"
+  },
+ "user2RandomID": {
+    id: "user2RandomID",
+    email: "user2@example.com",
+    password: "dishwasher-funk"
+  }
+}
 
 app.get("/", (req, res) => {
   res.send("Hello!");
@@ -27,8 +35,10 @@ app.get("/urls.json", (req, res) => {
   res.json(urlDatabase);
 });
 
-app.get("/hello", (req, res) => {
-  res.send("<html><body>Hello <b>World</b></body></html>\n");
+app.get("/urls", (req, res) => {
+  let templateVars = {username: req.cookies["username"], urls: urlDatabase };
+  //let cookie_id = res.cookie("Cookies ", res.cookie).userID;
+  res.render("urls_index", templateVars);
 });
 
 app.get("/urls/new", (req, res) => {
@@ -37,13 +47,49 @@ app.get("/urls/new", (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  res.clearCookie("username");
-  res.redirect("/urls");
-})
+   res.clearCookie("username");
+   res.redirect("/urls");
+});
+
+app.get("/login", (req, res) =>{
+  let templateVars = {username: req.cookies["username"], urls: urlDatabase };
+  res.render("urls_login", templateVars);
+});
 
 app.post("/login", (req, res) => {
-  res.cookie ('username', req.body.username);
+  res.cookie('username', req.body.username);
+    //let cookie_id = res.cookie("Cookies ", res.cookie).userID;
+  console.log(req.body.username);
   res.redirect("/urls");
+});
+
+app.get("/register", (req, res) =>{
+ let templateVars = {
+  user_id: req.cookies["user_id"],
+  email: (user.cookie["user_id"])
+ }
+  res.render("register", templateVars);
+});
+
+app.post("/register", (req, res) =>{
+  const useremail = req.body.email;
+  const userpass = req.body.password;
+  const newKey = generateRandomString();
+  users[newKey] = {};
+    if (!useremail || !userpass) {
+      res.status (400);
+      res.send ("Please can you fill in a valid email or password.");
+    } else if (emailChecker(useremail)) {
+      re.status(400);
+      res.send ("This email address already exists.");
+    } else {
+      users[newKey]["id"] = newkey;
+      users[newKey]["email"] = useremail;
+      users[newKey]["password"] = userpass;
+    }
+      //let cookie_id = res.cookie("Cookies ", res.cookie).userID;
+    res.cookie ("user_id", users[newKey]["id"]);
+    res.redirect ("/urls");
 });
 
 app.get("/urls/:shortURL", (req, res) => {
@@ -81,6 +127,12 @@ app.post("/urls/:shortURL/delete", (req, res) => {
   res.redirect("/urls");
 });
 
+app.get ("urls/:shortURL/edit"), (req, res) => {
+  urlDatabase[req.params.shortURL]["longURL"] = req.body.length;
+  const cookieUserid = req.cookies["user_id"];
+  res.redirect("/urls");
+}
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);
 });
@@ -91,4 +143,13 @@ function generateRandomString() {
     for (var i = 0; i < 6; i++)
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     return text;
+}
+
+function emailChecker (email) {
+  for (id in user){
+    if (email = user[id].email){
+      return user[id];
+    }
+  }
+  return false;
 }
