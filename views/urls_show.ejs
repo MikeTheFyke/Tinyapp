@@ -10,15 +10,14 @@
 </head>
 <body>
   <%- include partials/_header.ejs %>
-  <a href="#">Create a New TinyURL</a>
       <p></p>
       <p>My URLS</p>
     <ul>
-      <p> Tiny URL for - <%= longURL %></p>
-        <a href = <%= longURL %> ><b><%= shortURL %></b></a>
-    <form method="POST" action="/urls/<%= shortURL %>">
-        <input name = "username" type="text" placeholder="longurl "></input>
-        <button type="submit" class="btn btn-primary">Submit</button>
+      <p> Tiny URL for - <%= shortURL %></p>
+       <!--  <a href = <%= longURL %> ><b><%= shortURL %></b></a> -->
+    <form method="POST" action='/urls/<%= shortURL %>'>
+        <input name = "longURL" type="text" placeholder= '<%= longURL %>'></input>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
     </ul>
 </body>

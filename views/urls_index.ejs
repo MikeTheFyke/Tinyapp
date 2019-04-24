@@ -11,7 +11,7 @@
 <body style="font-size:20px; padding:50px;">
   <%- include partials/_header.ejs %>
       <p>My URLs</p>
-      <% for (key in urls){ %>
+<!--       <% for (key in urls){ %>
       <form  class="form-horizontal" method="POST" action = "/urls/<%= key %>/delete">
         <div class="form-group mb-2">
             <li><b><%= key %></b> - <%= urls[key] %></li>
@@ -19,6 +19,24 @@
             <a href="/urls/<%= key %>"> Edit</a>
         </div>
      <% } %>
-  </form>
+  </form> -->
+  <ul>
+       <% for(shortURL in urls){ %>
+         <li>
+           <form method="POST" action="/urls/<%= shortURL %>/delete" >
+           <!--should represent the long URL -->
+             <%= shortURL %> -->
+           <!--should represent the shortURL -->
+       <a href='<%= urls[shortURL].longURL %>'>
+             <%= urls[shortURL].longURL %>
+         </li>
+             <button type="submit"> delete </button>
+         </form>
+       </a>
+       <a href="/urls/<%= shortURL %>">
+         <button> update </button>
+       </a>
+       <% } %>
+    </ul>
 </body>
 </html>
