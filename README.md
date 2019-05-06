@@ -11,6 +11,6 @@ Dependencies include
 
 
 
-Setup Instructions
+Getting Started / Setup Instructions
 1. Install dependencies (npm install). 
 2. Run using node "node express_server.js".
