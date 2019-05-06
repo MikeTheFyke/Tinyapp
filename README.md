@@ -3,12 +3,12 @@ Tiny App is and HTTP server that handles requests from a browser (client) and al
 
 
 Dependencies include
-NodeJS
-Express
-Bcrypt
-cookie-parser
-body-parser
-express
+1. NodeJS
+2. Express
+3. Bcrypt
+4. cookie-parser
+5. body-parser
+
 
 
 Setup Instructions
