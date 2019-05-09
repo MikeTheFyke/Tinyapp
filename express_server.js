@@ -63,6 +63,15 @@ function inputMatch (email, password){
   return false;
 }
 
+function emailChecker (email) {
+  for (id in users){
+    if (email === users[id].email){
+      return true;
+    }
+  }
+  return false;
+}
+
 app.get("/", (req, res) => {
   res.redirect('/urls');
 });
@@ -72,13 +81,16 @@ app.get("/urls.json", (req, res) => {
 });
 
 app.get("/urls", (req, res) => {
-  let templateVars = {username: req.session.user_id,
-                      urls: urlsForUser(req.session.user_id) };
-
+  let user_id = req.session.user_id;
   if (req.session.user_id){
-  res.render("urls_index", templateVars);
+    let templateVars = {
+      'user_id' : user_id,
+      'urls' : urlsForUser(user_id),
+      'email' : (users[user_id] ? users[user_id].email : users[user_id])
+    }
+    res.render("urls_index", templateVars);
   } else {
-  res.redirect('/login');
+    res.redirect('/login');
   }
 });
 
@@ -93,9 +105,17 @@ app.post("/urls", (req, res) => {
 });
 
 app.get("/urls/new", (req, res) => {
-  let templateVars = {username: req.session.user_id};
-  res.render("urls_new", templateVars);
-
+  let user_id = req.session.user_id
+  if (!user_id) {
+    res.redirect("/login");
+  } else {
+    let templateVars = {
+      'user_id': user_id,
+      'urls': urlsForUser(user_id),
+      'email': (users[user_id] ? users[user_id].email : users[user_id])
+    };
+    res.render("urls_new", templateVars);
+  };
 });
 
 app.post("/logout", (req, res) => {
@@ -122,21 +142,21 @@ app.get("/login", (req, res) =>{
 // });
 app.post('/login', function (req, res) {
 let user_id = undefined;
- for(let i = 0; i < Object.keys(users).length; i++){
-  if((req.body.useremail == users[Object.keys(users)[i]]['email'])){
-   user_id = users[Object.keys(users)[i]];
+  for(let i = 0; i < Object.keys(users).length; i++){
+    if((req.body.useremail == users[Object.keys(users)[i]]['email'])){
+      user_id = users[Object.keys(users)[i]];
+    }
   }
- }
- if(!user_id){
-   res.status(403)
-   .send('This email does not exist in our records.')
- }else if(user_id && bcrypt.compareSync(req.body.userpass, user_id.password)){
-   req.session.user_id = user_id['id'];
-   res.redirect('/urls');
- }else{
-   res.status(403)
-   .send('Your password does not match one on record.');
- }
+    if(!user_id){
+      res.status(403)
+      .send('This email does not exist in our records.')
+    } else if(user_id && bcrypt.compareSync(req.body.userpass, user_id.password)){
+      req.session.user_id = user_id['id'];
+      res.redirect('/urls');
+    } else {
+      res.status(403)
+      .send('Your password does not match one on record.');
+    }
 })
 
 app.get("/register", (req, res) =>{
@@ -170,22 +190,20 @@ app.get("/register", (req, res) =>{
 // });
 
 app.post("/register", (req, res) => {
- const password = req.body.userpass;
- const email = req.body.useremail;
-
- if(req.body.useremail == "" || req.body.userpass == ""){
+  const password = req.body.userpass;
+  const email = req.body.useremail;
+ if(req.body.useremail == "" || req.body.userpass == "") {
    // HTTP status 400: NotFound
    res.status(400)
   .send('Not found');
- }
- else if (!emailChecker(req.body.useremail)){
-   let register = generateRandomString();
-   req.session.user_id = register;
-   users[register] = {
-     id : register,
-     email: email,
-     password: bcrypt.hashSync(password, 10)};
-   res.redirect("/urls");
+ } else if (!emailChecker(req.body.useremail)) {
+    let register = generateRandomString();
+    req.session.user_id = register;
+    users[register] = {
+    id : register,
+    email: email,
+    password: bcrypt.hashSync(password, 10)};
+    res.redirect("/urls");
  } else {
    //Handle Registration Errors
    res.status(400).send("Email already exists");;
@@ -197,9 +215,12 @@ app.get("/urls/:shortURL", (req, res) => {
   const shortURL = req.params.shortURL;
   // console.log("URLDATABASE ", urlDatabase);
   console.log("ShortURL : ", shortURL)
-  let templateVars = {username: req.session.user_id,
-                      shortURL: req.params.shortURL,
-                      longURL: urlDatabase[shortURL].longURL };
+  let templateVars = {
+    user_id: req.session.user_id,
+    shortURL: req.params.id,
+    longURL: urlDatabase[req.params.id],
+    email: (users[req.session.user_id] ? users[req.session.user_id].email : users[req.session.user_id])
+  };
   res.render("urls_show", templateVars);
 });
 
@@ -218,14 +239,45 @@ app.get("/u/:shortURL", (req, res) => {
 //   res.render ("urls_show", {shortURL:req.params.id});
 //});
 
-app.post("/urls/:id", (req, res) => {
-  if (req.session.user_id === undefined){
-    res.redirect("/urls");
-  } else {
-  // var editLink = req.body.longURL;
-  urlDatabase[req.params.id].longURL = req.body.longURL;
-  res.redirect("/urls");
+app.get("/urls/:id", (req, res) => {
+
+  if (!req.session.user_id) {
+    return res.status(401).send('Please login or register');
   }
+
+  let shortURL = req.params.id;
+
+  if (!urlDatabase[shortURL]) {
+    return res.status(404).send('TinyURL does not exist');
+  }
+
+  if (req.session.user_id !== urlDatabase[shortURL].userID) {
+    return res.status(403).send('This URL does not belong to you');
+  }
+
+  let templateVars = {
+    user_id: req.session.user_id,
+    shortURL: req.params.id,
+    longURL: urlDatabase[req.params.id],
+    email: (users[req.session.user_id] ? users[req.session.user_id].email : users[req.session.user_id])
+  };
+  res.render("urls_show", templateVars);
+
+});
+
+app.post("/urls/:id", (req, res) => {
+  if (!req.session.user_id) {
+    return res.status(401).send('Please login or register');
+  }
+
+  let shortURL = req.params.id;
+  console.log(req.session.user_id);
+  if (req.session.user_id !== urlDatabase[shortURL].userID) {
+    return res.status(403).send('This URL does not belong to you');
+  }
+
+  urlDatabase[shortURL].longURL = req.body.longURL;
+  res.redirect('/urls');
 });
 
 app.post("/urls/:shortURL/delete", (req, res) => {
@@ -243,12 +295,3 @@ app.get ("urls/:shortURL/edit"), (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);
 });
-
-function emailChecker (email) {
-  for (id in users){
-    if (email === users[id].email){
-      return true;
-    }
-  }
-  return false;
-}

@@ -8,17 +8,19 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <title>TinyApp</title>
 </head>
-<body>
-  <%- include partials/_header.ejs %>
-      <p></p>
-      <p>My URLS</p>
-    <ul>
-      <p> Tiny URL for - <%= shortURL %></p>
+<body style="font-size:20px; padding:50px;">
+    <%- include partials/_header.ejs %>
+      <h2 class="text-center">Update URL</h2>
+      <ul>
+        <p> Tiny URL for -</p>
+        <p><%= longURL %></p>
        <!--  <a href = <%= longURL %> ><b><%= shortURL %></b></a> -->
-    <form method="POST" action='/urls/<%= shortURL %>'>
-        <input name = "longURL" type="text" placeholder= '<%= longURL %>'></input>
-        <button type="submit" class="btn btn-primary">Update</button>
-    </form>
-    </ul>
+      <form method="POST" action='/urls/<%= shortURL %>'>
+        <div  class="d-flex justify-content-center">
+          <input name = "longURL" type="text" placeholder="<%= longURL %>"></input>
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </form>
+      </ul>
 </body>
 </html>
