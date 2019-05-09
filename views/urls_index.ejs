@@ -10,7 +10,7 @@
 
   <body style="font-size:20px; padding:50px;">
     <%- include partials/_header.ejs %>
-      <h2>My URLs</h2>
+      <h2 class="text-center">My URLs</h2>
         <form method="POST" action="/urls/<%= shortURL %>/delete" >
           <ul>
           <% for(shortURL in urls){ %>
