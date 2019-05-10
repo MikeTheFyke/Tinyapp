@@ -12,13 +12,12 @@
     <%- include partials/_header.ejs %>
       <h2 class="text-center">Update URL</h2>
       <ul>
-        <p> Tiny URL for -</p>
-        <p><%= longURL %></p>
+        <p> Tiny URL for -"<%= longURL %>"</p>
        <!--  <a href = <%= longURL %> ><b><%= shortURL %></b></a> -->
-      <form method="POST" action='/urls/<%= shortURL %>'>
+      <form method="POST" action='/urls/<%= shortURL %>edit'>
         <div  class="d-flex justify-content-center">
           <input name = "longURL" type="text" placeholder="<%= longURL %>"></input>
-          <button type="submit" class="btn btn-primary">Update</button>
+          <button type="submit" class="btn btn-primary">Edit</button>
         </div>
       </form>
       </ul>
