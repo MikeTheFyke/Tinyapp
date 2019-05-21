@@ -1,8 +1,8 @@
 Tiny App is and HTTP server that handles requests from a browser (client) and allows users to shorten long URLs much like TinyURL .This web app was built using Node and Express.
 
-!["Screenshot of Login page"](https://github.com/MikeTheFyke/tinyapp/blob/master/docs/Screen%20Shot%202019-05-05%20at%209.35.04%20PM.png?raw=true)
-!["Screenshot of Create URL page"](https://github.com/MikeTheFyke/tinyapp/blob/master/docs/Screen%20Shot%202019-05-05%20at%209.36.18%20PM.png?raw=true)
-!["Screenshot of Users URL's"](https://github.com/MikeTheFyke/tinyapp/blob/master/docs/Screen%20Shot%202019-05-05%20at%209.35.56%20PM.png?raw=true)
+!["Screenshot of Login page"](https://github.com/MikeTheFyke/tinyapp/blob/master/docs/Login.png)
+!["Screenshot of Create URL page"](https://github.com/MikeTheFyke/tinyapp/blob/master/docs/Mainpage.png)
+!["Screenshot of Users URL's"](https://github.com/MikeTheFyke/tinyapp/blob/master/docs/Mainpage%20wshortURL.png)
 
 Dependencies include
 1. NodeJS
