@@ -184,9 +184,6 @@ let user_id = undefined;
 //GET - Register_____________________________________________
 app.get("/register", (req, res) =>{
  let templateVars = { username: req.session.user_id}
- //                       useremail: req.session["user_id"],
- //                       username: req.sesssion["username"]
- // }
   res.render("urls_register", templateVars);
 });
 //POST - Register____________________________________________
@@ -211,19 +208,6 @@ app.post("/register", (req, res) => {
  }
 })
 //GET -_____________________________________________
-// app.get("/urls/:shortURL", (req, res) => {
-//   const shortURL = req.params.shortURL;
-//   // console.log("URLDATABASE ", urlDatabase);
-//   console.log("ShortURL : ", shortURL)
-//   let templateVars = {
-//     user_id: req.session.user_id,
-//     shortURL: req.params.id,
-//     longURL: urlDatabase[req.params.id],
-//     email: (users[req.session.user_id] ? users[req.session.user_id].email : users[req.session.user_id])
-//   };
-//   res.render("urls_show", templateVars);
-// });
-
 app.get("/u/:shortURL", (req, res) => {
   let shortURL = req.params.shortURL;
   let longURL = urlDatabase[req.params.shortURL];
