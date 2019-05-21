@@ -10,14 +10,14 @@
 </head>
 <body style="font-size:20px; padding:50px;">
     <%- include partials/_header.ejs %>
-      <h2 class="text-center">Update URL</h2>
-      <ul>
-        <p> Tiny URL for -"<%= longURL %>"</p>
-       <!--  <a href = <%= longURL %> ><b><%= shortURL %></b></a> -->
-      <form method="POST" action='/urls/<%= shortURL %>edit'>
+    <div class="text-center">
+      <h2>Update URL</h2>
+      <p> Tiny URL : <%= shortURL %>  for  <a target="_blank" href='https://<%= longURL.longURL %>'><%= longURL.longURL%></a></p>
+    </div>
+      <form method="POST" action="/urls/<%= shortURL %>">
         <div  class="d-flex justify-content-center">
-          <input name = "longURL" type="text" placeholder="<%= longURL %>"></input>
-          <button type="submit" class="btn btn-primary">Edit</button>
+          <input name = "longURL" type="text" placeholder="Enter a new URL"></input>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </form>
       </ul>

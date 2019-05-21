@@ -54,16 +54,7 @@ function generateRandomString() {
     return text;
 }
 // Helper function, to match user data________________
-function inputMatch (email, password){
-  for (let k in users){
-    if (users[id].email === email){
-      if (bcrypt.compareSync(password, users[id].password)){
-        return users[id];
-      }
-    }
-  }
-  return false;
-}
+
 
 function emailChecker (email) {
   for (id in users){
@@ -144,6 +135,7 @@ app.get("/urls/:id", (req, res) => {
     longURL: urlDatabase[req.params.id],
     email: (users[req.session.user_id] ? users[req.session.user_id].email : users[req.session.user_id])
   };
+  console.log("Here is your long URL ",urlDatabase[req.params.id].longURL)
   res.render("urls_show", templateVars);
 });
 // POST - id _________________________________________________
