@@ -210,10 +210,10 @@ app.post("/register", (req, res) => {
 //GET -_____________________________________________
 app.get("/u/:shortURL", (req, res) => {
   let shortURL = req.params.shortURL;
-  let longURL = urlDatabase[req.params.shortURL];
-  ///console.log(longURL);
+  let longURL = urlDatabase[shortURL].longURL;
+  console.log("u shortURL longURL = ", longURL);
   if (longURL){
-  res.redirect(longURL);
+  res.redirect("https://" +longURL);
   } else {
     res.send(shortURL, " is not valid.")
   }
