@@ -1,12 +1,12 @@
 <header>
-    <h1 class="bg-primary text-white text-center">Tiny App</h1>
+    <h1 class="titleBar">Tiny App</h1>
 </header>
 
 <% if (user_id) {%>
   <form method="POST" action = "/logout">
     <div class="container text-center">
           <p> Logged in as: <%= email %>  <a href="/urls/new">Create a short URL</a></p>
-          <button class="btn btn-primary btn-lg btn-block" type="submit">Logout</button>
+          <button class="titleBar" type="submit">Logout</button>
     </div>
   </form>
 <% } else { %>
