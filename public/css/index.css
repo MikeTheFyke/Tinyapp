@@ -1,9 +1,77 @@
 .titleBar{
     text-align: center;
     color:white;
+    font-size:2.5rem;
+    margin-left:10px;
+    width:247px;
+}
+
+.title{
+    color:white;
+    font-size:40px;
+    width:247px;
+}
+
+.register-container{
     background-color:rgb(0, 123, 255);
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+}
+
+.memberText{
+    margin-top: 9px;
+}
+
+a{
+    color:white;
+    text-decoration: none;
+}
+
+a:hover{
+    color:white;
+    text-decoration: none;
+}
+
+p{
+    margin-top: 9px;
+    color:white;
+    text-decoration: none;
+}
+
+.logoutContainer{
+    background-color:rgb(0, 123, 255);
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+}
+
+.navbuttons{
+    color:white;
+    text-decoration: none;
+    background-color:rgb(0, 123, 255);
+    border-color:white;
     border-radius:10px;
-    width: 40vw;
-    margin-left:auto;
-    margin-right:auto;
+    height:40px;
+    margin-top:8px;
+    margin-right:10px;
+    text-align:center;
+}
+
+.newURL{
+    color:black;
+}
+
+.newURL:hover{
+    color:black;
+}
+
+.inputText{
+    outline:0;
+    margin:10px;
+}
+
+.subTitle{
+    color:rgb(0, 123, 255);
+    text-align:center;
 }

@@ -6,23 +6,23 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/index.css" type="text/css" />
-  <title>TinyApp</title>
+  <title>Tiny App</title>
 </head>
 
   <body style="font-size:20px; padding:50px;">
     <%- include partials/_header.ejs %>
-      <h2 class="text-center">My URLs</h2>
+      <h2 class="subTitle">Your URLs</h2>
         <form method="POST" action="/urls/<%= shortURL %>/delete" >
           <ul>
           <% for(shortURL in urls){ %>
             <li><blockquote class="blockquote blockquote-reverse">
-                <p class="mb-0"><%= shortURL %></p>
+                <p class="newURL"><%= shortURL %></p>
                   <footer class="blockquote-footer">
-                    <a href='https://<%= urls[shortURL].longURL %>'><%= urls[shortURL].longURL %>
+                    <a class="newURL" target="_blank" rel="noopener noreferrer" href='https://<%= urls[shortURL].longURL %>'><%= urls[shortURL].longURL %></a>
                   </footer>
                 </blockquote>
-              <button class="btn btn-primary  type="submit">Delete</button>
-              <button class="btn btn-primary text-white  type="submit"><a class="text-white" href="/urls/<%= shortURL %>">Edit</a></button>
+              <button class="btn btn-primary"  type="submit">Delete</button>
+              <button class="btn btn-primary text-white"  type="submit"><a class="text-white" href="/urls/<%= shortURL %>">Edit</a></button>
             </li>
           <% } %>
           </ul>

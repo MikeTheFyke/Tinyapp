@@ -8,20 +8,24 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/index.css" type="text/css" />
 
-  <title></title>
+  <title>Tiny App Register</title>
 </head>
+
 <body style="font-size:20px; padding:50px;">
-  <h1 class="titleBar">Tiny App</h1>
-  <div class="register-container text-center">
-      <p>Already A Member ? <a href="/login">login</a></p>
+
+    <div class="register-container">
+      <h1 class="titleBar">Tiny App</h1>
+      <p class="memberText">Already A Member ?</p>
+      <a class="navButtons" href="/login">Login</a>
     </div>
-    <h2 class="text-center">Register</h2>
+
+    <h2 class="subTitle">Register</h2>
     <form method="POST" action = "/register">
       <div class="d-flex justify-content-center">
-        <input class="p-2" type="email" name="useremail" placeholder="Email">
-        <input class="p-2" type="password" name="userpass" placeholder="Password">
+        <input class="inputText" type="email" name="useremail" placeholder="Email" autocomplete="off">
+        <input class="inputText" type="password" name="userpass" placeholder="Password" autocomplete="off">
       </div>
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
+        <button class="navbuttons" type="submit">Register</button>
     </form>
 </body>
 </html>

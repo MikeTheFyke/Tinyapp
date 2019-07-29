@@ -1,17 +1,16 @@
-<header>
-    <h1 class="titleBar">Tiny App</h1>
-</header>
 
 <% if (user_id) {%>
   <form method="POST" action = "/logout">
-    <div class="container text-center">
-          <p> Logged in as: <%= email %>  <a href="/urls/new">Create a short URL</a></p>
-          <button class="titleBar" type="submit">Logout</button>
+    <div class="logoutContainer">
+        <h1 class="titleBar"><a class="title" href="/urls">Tiny App</a></h1>
+          <button class="navbuttons" type="submit">Logout</button>
+          <a class="navbuttons" href="/urls/new">Create a short URL</a>
+          <p> Logged in as: <%= email %></p>
     </div>
   </form>
 <% } else { %>
   <form method="POST" action = "/login">
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
+    <a class="navbuttons" href="/login">LOGIN</a>
+    <a class="navbuttons" href="/register">REGISTER</a>
   </form>
 <% } %>
