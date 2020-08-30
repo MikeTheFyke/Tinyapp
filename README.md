@@ -1,4 +1,4 @@
-Tiny App is and HTTP server that handles requests from a browser (client) and allows users to shorten long URLs much like TinyURL .This web app was built using Node and Express.
+Tiny App is an HTTP server that handles requests from a browser (client) and allows users to shorten long URLs much like TinyURL .This web app was built using Node and Express.
 
 !["Screenshot of Login page"](https://github.com/MikeTheFyke/tinyapp/blob/master/docs/Login.png)
 !["Screenshot of Create URL page"](https://github.com/MikeTheFyke/tinyapp/blob/master/docs/Mainpage.png)
